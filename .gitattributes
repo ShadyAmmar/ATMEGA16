@@ -2,3 +2,4 @@
 * text=auto
 
 Makefile linguist-detectable=false
+*.c linguist-detectable=true
