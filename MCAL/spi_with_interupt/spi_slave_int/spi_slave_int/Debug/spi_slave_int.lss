@@ -1,0 +1,418 @@
+
+spi_slave_int.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000023c  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000002  00800060  0000023c  000002d0  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000003  00800062  00800062  000002d2  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  000002d2  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000304  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 000000e0  00000000  00000000  00000340  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000aaa  00000000  00000000  00000420  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000007fa  00000000  00000000  00000eca  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   0000056c  00000000  00000000  000016c4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000144  00000000  00000000  00001c30  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000448  00000000  00000000  00001d74  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000377  00000000  00000000  000021bc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000090  00000000  00000000  00002533  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 fe 00 	jmp	0x1fc	; 0x1fc <__vector_10>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d4 e0       	ldi	r29, 0x04	; 4
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	ec e3       	ldi	r30, 0x3C	; 60
+  68:	f2 e0       	ldi	r31, 0x02	; 2
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a2 36       	cpi	r26, 0x62	; 98
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	20 e0       	ldi	r18, 0x00	; 0
+  78:	a2 e6       	ldi	r26, 0x62	; 98
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a5 36       	cpi	r26, 0x65	; 101
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 d6 00 	call	0x1ac	; 0x1ac <main>
+  8a:	0c 94 1c 01 	jmp	0x238	; 0x238 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <APP_vdMyApp>:
+#include "util/delay.h"
+
+void APP_vdMyApp(void)
+{  
+	unsigned char x;
+	x = SPI_u8Recev();
+  92:	0e 94 f9 00 	call	0x1f2	; 0x1f2 <SPI_u8Recev>
+	if (x == 49)
+  96:	81 33       	cpi	r24, 0x31	; 49
+  98:	29 f4       	brne	.+10     	; 0xa4 <APP_vdMyApp+0x12>
+	{
+		LED_vdTurnOn('C',0);
+  9a:	60 e0       	ldi	r22, 0x00	; 0
+  9c:	83 e4       	ldi	r24, 0x43	; 67
+  9e:	0e 94 ce 00 	call	0x19c	; 0x19c <LED_vdTurnOn>
+  a2:	08 95       	ret
+	}
+	else if (x == 48)
+  a4:	80 33       	cpi	r24, 0x30	; 48
+  a6:	21 f4       	brne	.+8      	; 0xb0 <APP_vdMyApp+0x1e>
+	{
+		LED_vdTurnOff('C',0);
+  a8:	60 e0       	ldi	r22, 0x00	; 0
+  aa:	83 e4       	ldi	r24, 0x43	; 67
+  ac:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <LED_vdTurnOff>
+  b0:	08 95       	ret
+
+000000b2 <DIO_vdInit>:
+		temp=(PIND &(1<<pinNO));
+		return temp;
+		break ;
+	}
+	return temp;
+}
+  b2:	8f ef       	ldi	r24, 0xFF	; 255
+  b4:	81 bb       	out	0x11, r24	; 17
+  b6:	8a bb       	out	0x1a, r24	; 26
+  b8:	84 bb       	out	0x14, r24	; 20
+  ba:	08 95       	ret
+
+000000bc <DIO_vdWritePin>:
+
+
+
+void DIO_vdWritePin(unsigned char portregID, unsigned char pinNO ,unsigned char value_1)
+{
+	switch(portregID)
+  bc:	82 34       	cpi	r24, 0x42	; 66
+  be:	19 f1       	breq	.+70     	; 0x106 <DIO_vdWritePin+0x4a>
+  c0:	18 f4       	brcc	.+6      	; 0xc8 <DIO_vdWritePin+0xc>
+  c2:	81 34       	cpi	r24, 0x41	; 65
+  c4:	39 f0       	breq	.+14     	; 0xd4 <DIO_vdWritePin+0x18>
+  c6:	08 95       	ret
+  c8:	83 34       	cpi	r24, 0x43	; 67
+  ca:	b1 f1       	breq	.+108    	; 0x138 <DIO_vdWritePin+0x7c>
+  cc:	84 34       	cpi	r24, 0x44	; 68
+  ce:	09 f4       	brne	.+2      	; 0xd2 <DIO_vdWritePin+0x16>
+  d0:	4c c0       	rjmp	.+152    	; 0x16a <DIO_vdWritePin+0xae>
+  d2:	08 95       	ret
+	{
+		case 'A' :
+		if(value_1)
+  d4:	44 23       	and	r20, r20
+  d6:	59 f0       	breq	.+22     	; 0xee <DIO_vdWritePin+0x32>
+		PORTA|=(1<<pinNO);
+  d8:	2b b3       	in	r18, 0x1b	; 27
+  da:	81 e0       	ldi	r24, 0x01	; 1
+  dc:	90 e0       	ldi	r25, 0x00	; 0
+  de:	02 c0       	rjmp	.+4      	; 0xe4 <DIO_vdWritePin+0x28>
+  e0:	88 0f       	add	r24, r24
+  e2:	99 1f       	adc	r25, r25
+  e4:	6a 95       	dec	r22
+  e6:	e2 f7       	brpl	.-8      	; 0xe0 <DIO_vdWritePin+0x24>
+  e8:	82 2b       	or	r24, r18
+  ea:	8b bb       	out	0x1b, r24	; 27
+  ec:	08 95       	ret
+		else
+		PORTA&=~(1<<pinNO);
+  ee:	2b b3       	in	r18, 0x1b	; 27
+  f0:	81 e0       	ldi	r24, 0x01	; 1
+  f2:	90 e0       	ldi	r25, 0x00	; 0
+  f4:	02 c0       	rjmp	.+4      	; 0xfa <DIO_vdWritePin+0x3e>
+  f6:	88 0f       	add	r24, r24
+  f8:	99 1f       	adc	r25, r25
+  fa:	6a 95       	dec	r22
+  fc:	e2 f7       	brpl	.-8      	; 0xf6 <DIO_vdWritePin+0x3a>
+  fe:	80 95       	com	r24
+ 100:	82 23       	and	r24, r18
+ 102:	8b bb       	out	0x1b, r24	; 27
+ 104:	08 95       	ret
+		break ;
+		case 'B' :
+		if(value_1)
+ 106:	44 23       	and	r20, r20
+ 108:	59 f0       	breq	.+22     	; 0x120 <DIO_vdWritePin+0x64>
+		PORTB|=(1<<pinNO);
+ 10a:	28 b3       	in	r18, 0x18	; 24
+ 10c:	81 e0       	ldi	r24, 0x01	; 1
+ 10e:	90 e0       	ldi	r25, 0x00	; 0
+ 110:	02 c0       	rjmp	.+4      	; 0x116 <DIO_vdWritePin+0x5a>
+ 112:	88 0f       	add	r24, r24
+ 114:	99 1f       	adc	r25, r25
+ 116:	6a 95       	dec	r22
+ 118:	e2 f7       	brpl	.-8      	; 0x112 <DIO_vdWritePin+0x56>
+ 11a:	82 2b       	or	r24, r18
+ 11c:	88 bb       	out	0x18, r24	; 24
+ 11e:	08 95       	ret
+		else
+		PORTB&=~(1<<pinNO);
+ 120:	28 b3       	in	r18, 0x18	; 24
+ 122:	81 e0       	ldi	r24, 0x01	; 1
+ 124:	90 e0       	ldi	r25, 0x00	; 0
+ 126:	02 c0       	rjmp	.+4      	; 0x12c <DIO_vdWritePin+0x70>
+ 128:	88 0f       	add	r24, r24
+ 12a:	99 1f       	adc	r25, r25
+ 12c:	6a 95       	dec	r22
+ 12e:	e2 f7       	brpl	.-8      	; 0x128 <DIO_vdWritePin+0x6c>
+ 130:	80 95       	com	r24
+ 132:	82 23       	and	r24, r18
+ 134:	88 bb       	out	0x18, r24	; 24
+ 136:	08 95       	ret
+		break ;
+		case 'C' :
+		if(value_1)
+ 138:	44 23       	and	r20, r20
+ 13a:	59 f0       	breq	.+22     	; 0x152 <DIO_vdWritePin+0x96>
+		PORTC|=(1<<pinNO);
+ 13c:	25 b3       	in	r18, 0x15	; 21
+ 13e:	81 e0       	ldi	r24, 0x01	; 1
+ 140:	90 e0       	ldi	r25, 0x00	; 0
+ 142:	02 c0       	rjmp	.+4      	; 0x148 <DIO_vdWritePin+0x8c>
+ 144:	88 0f       	add	r24, r24
+ 146:	99 1f       	adc	r25, r25
+ 148:	6a 95       	dec	r22
+ 14a:	e2 f7       	brpl	.-8      	; 0x144 <DIO_vdWritePin+0x88>
+ 14c:	82 2b       	or	r24, r18
+ 14e:	85 bb       	out	0x15, r24	; 21
+ 150:	08 95       	ret
+		else
+		PORTC&=~(1<<pinNO);
+ 152:	25 b3       	in	r18, 0x15	; 21
+ 154:	81 e0       	ldi	r24, 0x01	; 1
+ 156:	90 e0       	ldi	r25, 0x00	; 0
+ 158:	02 c0       	rjmp	.+4      	; 0x15e <DIO_vdWritePin+0xa2>
+ 15a:	88 0f       	add	r24, r24
+ 15c:	99 1f       	adc	r25, r25
+ 15e:	6a 95       	dec	r22
+ 160:	e2 f7       	brpl	.-8      	; 0x15a <DIO_vdWritePin+0x9e>
+ 162:	80 95       	com	r24
+ 164:	82 23       	and	r24, r18
+ 166:	85 bb       	out	0x15, r24	; 21
+ 168:	08 95       	ret
+		break ;
+		case 'D' :
+		if(value_1)
+ 16a:	44 23       	and	r20, r20
+ 16c:	59 f0       	breq	.+22     	; 0x184 <DIO_vdWritePin+0xc8>
+		PORTD|=(1<<pinNO);
+ 16e:	22 b3       	in	r18, 0x12	; 18
+ 170:	81 e0       	ldi	r24, 0x01	; 1
+ 172:	90 e0       	ldi	r25, 0x00	; 0
+ 174:	02 c0       	rjmp	.+4      	; 0x17a <DIO_vdWritePin+0xbe>
+ 176:	88 0f       	add	r24, r24
+ 178:	99 1f       	adc	r25, r25
+ 17a:	6a 95       	dec	r22
+ 17c:	e2 f7       	brpl	.-8      	; 0x176 <DIO_vdWritePin+0xba>
+ 17e:	82 2b       	or	r24, r18
+ 180:	82 bb       	out	0x12, r24	; 18
+ 182:	08 95       	ret
+		else
+		PORTD&=~(1<<pinNO);
+ 184:	22 b3       	in	r18, 0x12	; 18
+ 186:	81 e0       	ldi	r24, 0x01	; 1
+ 188:	90 e0       	ldi	r25, 0x00	; 0
+ 18a:	02 c0       	rjmp	.+4      	; 0x190 <DIO_vdWritePin+0xd4>
+ 18c:	88 0f       	add	r24, r24
+ 18e:	99 1f       	adc	r25, r25
+ 190:	6a 95       	dec	r22
+ 192:	e2 f7       	brpl	.-8      	; 0x18c <DIO_vdWritePin+0xd0>
+ 194:	80 95       	com	r24
+ 196:	82 23       	and	r24, r18
+ 198:	82 bb       	out	0x12, r24	; 18
+ 19a:	08 95       	ret
+
+0000019c <LED_vdTurnOn>:
+#include "DIO.h"
+
+//*************************************************************************
+void LED_vdTurnOn(unsigned char port_ID , unsigned char pin_no)
+{
+	 DIO_vdWritePin(port_ID,pin_no, 1);
+ 19c:	41 e0       	ldi	r20, 0x01	; 1
+ 19e:	0e 94 5e 00 	call	0xbc	; 0xbc <DIO_vdWritePin>
+ 1a2:	08 95       	ret
+
+000001a4 <LED_vdTurnOff>:
+}
+
+//*************************************************************************
+void LED_vdTurnOff(unsigned char port_ID , unsigned char pin_no)
+{
+	DIO_vdWritePin(port_ID,pin_no, 0);
+ 1a4:	40 e0       	ldi	r20, 0x00	; 0
+ 1a6:	0e 94 5e 00 	call	0xbc	; 0xbc <DIO_vdWritePin>
+ 1aa:	08 95       	ret
+
+000001ac <main>:
+#include "APP.h"
+#include "LED.h"
+
+int main(void)
+{
+	DIO_vdInit();
+ 1ac:	0e 94 59 00 	call	0xb2	; 0xb2 <DIO_vdInit>
+	SPI_vdInit(SLAVE);
+ 1b0:	80 e0       	ldi	r24, 0x00	; 0
+ 1b2:	0e 94 de 00 	call	0x1bc	; 0x1bc <SPI_vdInit>
+	while(1)
+	{
+		APP_vdMyApp();
+ 1b6:	0e 94 49 00 	call	0x92	; 0x92 <APP_vdMyApp>
+ 1ba:	fd cf       	rjmp	.-6      	; 0x1b6 <main+0xa>
+
+000001bc <SPI_vdInit>:
+		else
+		{
+			// Start transmission
+			SPDR = data;
+		}
+		new_transmission=0;
+ 1bc:	18 ba       	out	0x18, r1	; 24
+ 1be:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <mode>
+ 1c2:	81 30       	cpi	r24, 0x01	; 1
+ 1c4:	51 f4       	brne	.+20     	; 0x1da <SPI_vdInit+0x1e>
+ 1c6:	87 b3       	in	r24, 0x17	; 23
+ 1c8:	80 6b       	ori	r24, 0xB0	; 176
+ 1ca:	87 bb       	out	0x17, r24	; 23
+ 1cc:	c4 9a       	sbi	0x18, 4	; 24
+ 1ce:	1e b8       	out	0x0e, r1	; 14
+ 1d0:	81 ed       	ldi	r24, 0xD1	; 209
+ 1d2:	8d b9       	out	0x0d, r24	; 13
+ 1d4:	80 e8       	ldi	r24, 0x80	; 128
+ 1d6:	8f bf       	out	0x3f, r24	; 63
+ 1d8:	08 95       	ret
+ 1da:	87 b3       	in	r24, 0x17	; 23
+ 1dc:	81 64       	ori	r24, 0x41	; 65
+ 1de:	87 bb       	out	0x17, r24	; 23
+ 1e0:	87 b3       	in	r24, 0x17	; 23
+ 1e2:	8f 74       	andi	r24, 0x4F	; 79
+ 1e4:	87 bb       	out	0x17, r24	; 23
+ 1e6:	1e b8       	out	0x0e, r1	; 14
+ 1e8:	81 ec       	ldi	r24, 0xC1	; 193
+ 1ea:	8d b9       	out	0x0d, r24	; 13
+ 1ec:	80 e8       	ldi	r24, 0x80	; 128
+ 1ee:	8f bf       	out	0x3f, r24	; 63
+ 1f0:	08 95       	ret
+
+000001f2 <SPI_u8Recev>:
+}
+//**********************************************************************************************************************************
+unsigned char SPI_u8Recev(void)
+{
+	//rx_complete = 0;
+	transmition_status = RECIEVING;
+ 1f2:	10 92 63 00 	sts	0x0063, r1	; 0x800063 <transmition_status>
+	// Wait for transmission complete
+	return rx_complete;
+}
+ 1f6:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <__data_end>
+ 1fa:	08 95       	ret
+
+000001fc <__vector_10>:
+//**********************************************************************************************************************************
+ISR(SPI_STC_vect)
+{
+ 1fc:	1f 92       	push	r1
+ 1fe:	0f 92       	push	r0
+ 200:	0f b6       	in	r0, 0x3f	; 63
+ 202:	0f 92       	push	r0
+ 204:	11 24       	eor	r1, r1
+ 206:	8f 93       	push	r24
+	if(transmition_status == RECIEVING)
+ 208:	80 91 63 00 	lds	r24, 0x0063	; 0x800063 <transmition_status>
+ 20c:	81 11       	cpse	r24, r1
+ 20e:	04 c0       	rjmp	.+8      	; 0x218 <__vector_10+0x1c>
+	{
+		rx_complete = SPDR;
+ 210:	8f b1       	in	r24, 0x0f	; 15
+ 212:	80 93 62 00 	sts	0x0062, r24	; 0x800062 <__data_end>
+ 216:	0a c0       	rjmp	.+20     	; 0x22c <__vector_10+0x30>
+	}
+	else if (transmition_status == SENDING)
+ 218:	81 30       	cpi	r24, 0x01	; 1
+ 21a:	41 f4       	brne	.+16     	; 0x22c <__vector_10+0x30>
+	{
+		if(mode == MASTER)
+ 21c:	80 91 64 00 	lds	r24, 0x0064	; 0x800064 <mode>
+ 220:	81 30       	cpi	r24, 0x01	; 1
+ 222:	09 f4       	brne	.+2      	; 0x226 <__vector_10+0x2a>
+		{
+			//TELL THE RECIVER I FINISHED THE TRANSMISSION.
+			PORTB|=(1<<4);
+ 224:	c4 9a       	sbi	0x18, 4	; 24
+		}
+		new_transmission=1;
+ 226:	81 e0       	ldi	r24, 0x01	; 1
+ 228:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__data_start>
+	}
+ 22c:	8f 91       	pop	r24
+ 22e:	0f 90       	pop	r0
+ 230:	0f be       	out	0x3f, r0	; 63
+ 232:	0f 90       	pop	r0
+ 234:	1f 90       	pop	r1
+ 236:	18 95       	reti
+
+00000238 <_exit>:
+ 238:	f8 94       	cli
+
+0000023a <__stop_program>:
+ 23a:	ff cf       	rjmp	.-2      	; 0x23a <__stop_program>

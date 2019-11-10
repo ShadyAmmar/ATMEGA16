@@ -1,0 +1,376 @@
+
+SPI_MASTER_1.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000001b2  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  00000226  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000001  00800060  00800060  00000226  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000226  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000258  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 000000d0  00000000  00000000  00000294  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000a47  00000000  00000000  00000364  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000860  00000000  00000000  00000dab  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000640  00000000  00000000  0000160b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000114  00000000  00000000  00001c4c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000429  00000000  00000000  00001d60  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    0000037a  00000000  00000000  00002189  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000080  00000000  00000000  00002503  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   8:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  10:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  14:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  18:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  1c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  20:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  24:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  28:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  2c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  30:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  34:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  38:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  3c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  40:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  44:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  48:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  4c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  50:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d4 e0       	ldi	r29, 0x04	; 4
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_clear_bss>:
+  60:	20 e0       	ldi	r18, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	01 c0       	rjmp	.+2      	; 0x6a <.do_clear_bss_start>
+
+00000068 <.do_clear_bss_loop>:
+  68:	1d 92       	st	X+, r1
+
+0000006a <.do_clear_bss_start>:
+  6a:	a1 36       	cpi	r26, 0x61	; 97
+  6c:	b2 07       	cpc	r27, r18
+  6e:	e1 f7       	brne	.-8      	; 0x68 <.do_clear_bss_loop>
+  70:	0e 94 bd 00 	call	0x17a	; 0x17a <main>
+  74:	0c 94 d7 00 	jmp	0x1ae	; 0x1ae <_exit>
+
+00000078 <__bad_interrupt>:
+  78:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000007c <APP_vdMyApp>:
+	unsigned char value=0;
+	//unsigned char x=0;
+	//SPI_vdSend(0x09);
+	
+	
+	status=BTN_u8Getstate();
+  7c:	0e 94 4c 00 	call	0x98	; 0x98 <BTN_u8Getstate>
+	if(status == pressed)
+  80:	81 30       	cpi	r24, 0x01	; 1
+  82:	21 f4       	brne	.+8      	; 0x8c <APP_vdMyApp+0x10>
+	{
+		value=49;
+		SPI_vdSend(value);
+  84:	81 e3       	ldi	r24, 0x31	; 49
+  86:	0e 94 af 00 	call	0x15e	; 0x15e <SPI_vdSend>
+  8a:	08 95       	ret
+	}
+	else if(status == released)
+  8c:	81 11       	cpse	r24, r1
+  8e:	03 c0       	rjmp	.+6      	; 0x96 <APP_vdMyApp+0x1a>
+	{
+		value=48;//'0'
+		SPI_vdSend(value);
+  90:	80 e3       	ldi	r24, 0x30	; 48
+  92:	0e 94 af 00 	call	0x15e	; 0x15e <SPI_vdSend>
+  96:	08 95       	ret
+
+00000098 <BTN_u8Getstate>:
+
+
+int BTN_u8Getstate(void)
+{
+	int status;
+	status=DIO_u8ReadPin('D',0);
+  98:	60 e0       	ldi	r22, 0x00	; 0
+  9a:	84 e4       	ldi	r24, 0x44	; 68
+  9c:	0e 94 5c 00 	call	0xb8	; 0xb8 <DIO_u8ReadPin>
+  a0:	21 e0       	ldi	r18, 0x01	; 1
+  a2:	30 e0       	ldi	r19, 0x00	; 0
+  a4:	01 97       	sbiw	r24, 0x01	; 1
+  a6:	11 f0       	breq	.+4      	; 0xac <BTN_u8Getstate+0x14>
+  a8:	20 e0       	ldi	r18, 0x00	; 0
+  aa:	30 e0       	ldi	r19, 0x00	; 0
+	if(status==1)
+		return 1;
+	else
+		return 0;
+  ac:	c9 01       	movw	r24, r18
+  ae:	08 95       	ret
+
+000000b0 <DIO_vdInit>:
+﻿
+#include <avr/io.h>
+
+void DIO_vdInit(void)
+{
+	DDRD=0;
+  b0:	11 ba       	out	0x11, r1	; 17
+	DDRC =0xFF;
+  b2:	8f ef       	ldi	r24, 0xFF	; 255
+  b4:	84 bb       	out	0x14, r24	; 20
+  b6:	08 95       	ret
+
+000000b8 <DIO_u8ReadPin>:
+
+//*******************************************************************************
+int DIO_u8ReadPin(unsigned char portregID ,unsigned char pinNO )
+{
+	unsigned int temp=0;
+	switch(portregID)
+  b8:	82 34       	cpi	r24, 0x42	; 66
+  ba:	a9 f0       	breq	.+42     	; 0xe6 <DIO_u8ReadPin+0x2e>
+  bc:	18 f4       	brcc	.+6      	; 0xc4 <DIO_u8ReadPin+0xc>
+  be:	81 34       	cpi	r24, 0x41	; 65
+  c0:	31 f0       	breq	.+12     	; 0xce <DIO_u8ReadPin+0x16>
+  c2:	35 c0       	rjmp	.+106    	; 0x12e <DIO_u8ReadPin+0x76>
+  c4:	83 34       	cpi	r24, 0x43	; 67
+  c6:	d9 f0       	breq	.+54     	; 0xfe <DIO_u8ReadPin+0x46>
+  c8:	84 34       	cpi	r24, 0x44	; 68
+  ca:	29 f1       	breq	.+74     	; 0x116 <DIO_u8ReadPin+0x5e>
+  cc:	30 c0       	rjmp	.+96     	; 0x12e <DIO_u8ReadPin+0x76>
+	{
+		case 'A' :
+		temp=(PINA &(1<<pinNO));
+  ce:	29 b3       	in	r18, 0x19	; 25
+  d0:	81 e0       	ldi	r24, 0x01	; 1
+  d2:	90 e0       	ldi	r25, 0x00	; 0
+  d4:	02 c0       	rjmp	.+4      	; 0xda <DIO_u8ReadPin+0x22>
+  d6:	88 0f       	add	r24, r24
+  d8:	99 1f       	adc	r25, r25
+  da:	6a 95       	dec	r22
+  dc:	e2 f7       	brpl	.-8      	; 0xd6 <DIO_u8ReadPin+0x1e>
+  de:	30 e0       	ldi	r19, 0x00	; 0
+  e0:	82 23       	and	r24, r18
+  e2:	93 23       	and	r25, r19
+		return temp;
+  e4:	08 95       	ret
+		break ;
+
+		case 'B' :
+		temp=(PINB &(1<<pinNO));
+  e6:	26 b3       	in	r18, 0x16	; 22
+  e8:	81 e0       	ldi	r24, 0x01	; 1
+  ea:	90 e0       	ldi	r25, 0x00	; 0
+  ec:	02 c0       	rjmp	.+4      	; 0xf2 <DIO_u8ReadPin+0x3a>
+  ee:	88 0f       	add	r24, r24
+  f0:	99 1f       	adc	r25, r25
+  f2:	6a 95       	dec	r22
+  f4:	e2 f7       	brpl	.-8      	; 0xee <DIO_u8ReadPin+0x36>
+  f6:	30 e0       	ldi	r19, 0x00	; 0
+  f8:	82 23       	and	r24, r18
+  fa:	93 23       	and	r25, r19
+		return temp;
+  fc:	08 95       	ret
+		break ;
+		
+		case 'C' :
+		temp=(PINC &(1<<pinNO));
+  fe:	23 b3       	in	r18, 0x13	; 19
+ 100:	81 e0       	ldi	r24, 0x01	; 1
+ 102:	90 e0       	ldi	r25, 0x00	; 0
+ 104:	02 c0       	rjmp	.+4      	; 0x10a <DIO_u8ReadPin+0x52>
+ 106:	88 0f       	add	r24, r24
+ 108:	99 1f       	adc	r25, r25
+ 10a:	6a 95       	dec	r22
+ 10c:	e2 f7       	brpl	.-8      	; 0x106 <DIO_u8ReadPin+0x4e>
+ 10e:	30 e0       	ldi	r19, 0x00	; 0
+ 110:	82 23       	and	r24, r18
+ 112:	93 23       	and	r25, r19
+		return temp;
+ 114:	08 95       	ret
+		break;
+		
+		case 'D' :
+		temp=(PIND &(1<<pinNO));
+ 116:	20 b3       	in	r18, 0x10	; 16
+ 118:	81 e0       	ldi	r24, 0x01	; 1
+ 11a:	90 e0       	ldi	r25, 0x00	; 0
+ 11c:	02 c0       	rjmp	.+4      	; 0x122 <DIO_u8ReadPin+0x6a>
+ 11e:	88 0f       	add	r24, r24
+ 120:	99 1f       	adc	r25, r25
+ 122:	6a 95       	dec	r22
+ 124:	e2 f7       	brpl	.-8      	; 0x11e <DIO_u8ReadPin+0x66>
+ 126:	30 e0       	ldi	r19, 0x00	; 0
+ 128:	82 23       	and	r24, r18
+ 12a:	93 23       	and	r25, r19
+		return temp;
+ 12c:	08 95       	ret
+		break ;
+	}
+	return temp;
+ 12e:	80 e0       	ldi	r24, 0x00	; 0
+ 130:	90 e0       	ldi	r25, 0x00	; 0
+}
+ 132:	08 95       	ret
+
+00000134 <SPI_vdInit>:
+static unsigned char mode;
+
+//*****************************************************************************************************************************************
+void SPI_vdInit(unsigned char App_mode)
+{
+	PORTB = 0;
+ 134:	18 ba       	out	0x18, r1	; 24
+	mode = App_mode;
+ 136:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <_edata>
+	if(mode == MASTER)
+ 13a:	81 30       	cpi	r24, 0x01	; 1
+ 13c:	41 f4       	brne	.+16     	; 0x14e <SPI_vdInit+0x1a>
+	{
+		DDRB |= (1<<PB4)|(1<<PB5)|(1<<PB7);
+ 13e:	87 b3       	in	r24, 0x17	; 23
+ 140:	80 6b       	ori	r24, 0xB0	; 176
+ 142:	87 bb       	out	0x17, r24	; 23
+		PORTB |=(1<<PB4);
+ 144:	c4 9a       	sbi	0x18, 4	; 24
+		SPSR = 0;
+ 146:	1e b8       	out	0x0e, r1	; 14
+		SPCR = (1<<SPE)|(1<<MSTR)|(1<<SPR0);
+ 148:	81 e5       	ldi	r24, 0x51	; 81
+ 14a:	8d b9       	out	0x0d, r24	; 13
+ 14c:	08 95       	ret
+		SPCR|=(1<<6);
+		*/
+	}
+	else
+	{
+		DDRB |= (1<<PB6);
+ 14e:	be 9a       	sbi	0x17, 6	; 23
+		DDRB &=~ ((1<<PB4)|(1<<PB5)|(1<<PB7));
+ 150:	87 b3       	in	r24, 0x17	; 23
+ 152:	8f 74       	andi	r24, 0x4F	; 79
+ 154:	87 bb       	out	0x17, r24	; 23
+		SPSR = 0;
+ 156:	1e b8       	out	0x0e, r1	; 14
+		SPCR = (1<<SPE)|(1<<SPR0);
+ 158:	81 e4       	ldi	r24, 0x41	; 65
+ 15a:	8d b9       	out	0x0d, r24	; 13
+ 15c:	08 95       	ret
+
+0000015e <SPI_vdSend>:
+	}
+}
+//*********************************************************************************************************************************
+void SPI_vdSend(unsigned char data )
+{
+	if(mode == MASTER)
+ 15e:	90 91 60 00 	lds	r25, 0x0060	; 0x800060 <_edata>
+ 162:	91 30       	cpi	r25, 0x01	; 1
+ 164:	31 f4       	brne	.+12     	; 0x172 <SPI_vdSend+0x14>
+	{
+		//TELL THE RECIVER I WILL TRANSMIT.
+		PORTB&=~(1<<4);
+ 166:	c4 98       	cbi	0x18, 4	; 24
+		
+		// Start transmission
+		SPDR = data;
+ 168:	8f b9       	out	0x0f, r24	; 15
+		
+		// Wait for transmission complete
+		while(!(SPSR & (1<<SPIF)))
+ 16a:	77 9b       	sbis	0x0e, 7	; 14
+ 16c:	fe cf       	rjmp	.-4      	; 0x16a <SPI_vdSend+0xc>
+		;
+		
+		//TELL THE RECIVER I FINISHED THE TRANSMISSION.
+		PORTB|=(1<<4);
+ 16e:	c4 9a       	sbi	0x18, 4	; 24
+ 170:	08 95       	ret
+	}
+	else
+	{
+		// Start transmission
+		SPDR = data;
+ 172:	8f b9       	out	0x0f, r24	; 15
+		
+		// Wait for transmission complete
+		while(!(SPSR & (1<<SPIF)))
+ 174:	77 9b       	sbis	0x0e, 7	; 14
+ 176:	fe cf       	rjmp	.-4      	; 0x174 <SPI_vdSend+0x16>
+ 178:	08 95       	ret
+
+0000017a <main>:
+#include "DIO.h"
+#include "LED.h"
+
+int main(void)
+{
+	DIO_vdInit();
+ 17a:	0e 94 58 00 	call	0xb0	; 0xb0 <DIO_vdInit>
+	SPI_vdInit(MASTER);
+ 17e:	81 e0       	ldi	r24, 0x01	; 1
+ 180:	0e 94 9a 00 	call	0x134	; 0x134 <SPI_vdInit>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 184:	2f ef       	ldi	r18, 0xFF	; 255
+ 186:	89 e6       	ldi	r24, 0x69	; 105
+ 188:	98 e1       	ldi	r25, 0x18	; 24
+ 18a:	21 50       	subi	r18, 0x01	; 1
+ 18c:	80 40       	sbci	r24, 0x00	; 0
+ 18e:	90 40       	sbci	r25, 0x00	; 0
+ 190:	e1 f7       	brne	.-8      	; 0x18a <main+0x10>
+ 192:	00 c0       	rjmp	.+0      	; 0x194 <main+0x1a>
+ 194:	00 00       	nop
+ 196:	2f ef       	ldi	r18, 0xFF	; 255
+ 198:	84 e3       	ldi	r24, 0x34	; 52
+ 19a:	9c e0       	ldi	r25, 0x0C	; 12
+ 19c:	21 50       	subi	r18, 0x01	; 1
+ 19e:	80 40       	sbci	r24, 0x00	; 0
+ 1a0:	90 40       	sbci	r25, 0x00	; 0
+ 1a2:	e1 f7       	brne	.-8      	; 0x19c <main+0x22>
+ 1a4:	00 c0       	rjmp	.+0      	; 0x1a6 <main+0x2c>
+ 1a6:	00 00       	nop
+	_delay_ms(1000);
+	//APP_vdMyApp();
+	while(1)
+	{
+		_delay_ms(500);
+		APP_vdMyApp();
+ 1a8:	0e 94 3e 00 	call	0x7c	; 0x7c <APP_vdMyApp>
+ 1ac:	f4 cf       	rjmp	.-24     	; 0x196 <main+0x1c>
+
+000001ae <_exit>:
+ 1ae:	f8 94       	cli
+
+000001b0 <__stop_program>:
+ 1b0:	ff cf       	rjmp	.-2      	; 0x1b0 <__stop_program>
