@@ -2,4 +2,4 @@
 * text=auto
 
 Makefile linguist-detectable=false
-*.C linguist-detectable=true
+**/c/** gitlab-language=c linguist-language=c linguist-detectable=true
